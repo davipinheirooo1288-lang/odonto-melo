@@ -9,90 +9,105 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <header className="relative h-[80vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-primary/10" />
-        <div className="container relative z-10 px-4 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-primary">
-            Clínica Odonto Melo
+      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-secondary/10 pt-20">
+        <div className="container px-4 text-center z-10">
+          <span className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-sm font-bold mb-6 animate-in fade-in slide-in-from-bottom-2">
+            ODONTOLOGIA PREMIUM EM ITAPIPOCA
+          </span>
+          <h1 className="text-5xl md:text-8xl font-bold tracking-tighter mb-8 text-primary leading-[1.1]">
+            Sorrisos que <br /> transformam vidas.
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Excelência em saúde bucal, unindo técnica avançada e atendimento humanizado em Itapipoca.
+          <p className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-2xl mx-auto">
+            A Odonto Melo une tecnologia de ponta e cuidado humanizado para oferecer a você a melhor experiência odontológica.
           </p>
-          <div className="flex gap-4 justify-center">
-            <Button size="lg" className="text-lg px-8 py-6 rounded-full bg-primary hover:bg-primary/90">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button size="lg" className="rounded-full px-10 h-14 text-lg bg-primary hover:bg-primary/90 shadow-elegant">
               Agendar Consulta
             </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 py-6 rounded-full border-primary/20">
-              Ver Serviços
+            <Button size="lg" variant="outline" className="rounded-full px-10 h-14 text-lg border-primary/20 hover:bg-primary/5">
+              Conhecer Serviços
             </Button>
           </div>
         </div>
-      </header>
-
-      {/* Services Grid */}
-      <section className="py-24 container px-4">
-        <h2 className="text-4xl font-bold text-center mb-16">Nossos Especialidades</h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          {[
-            { title: "Implantes", icon: <Sparkles className="h-8 w-8 text-primary" /> },
-            { title: "Facetas de Resina", icon: <Smile className="h-8 w-8 text-primary" /> },
-            { title: "Ortodontia", icon: <UserCheck className="h-8 w-8 text-primary" /> },
-            { title: "Atendimento Infantil", icon: <Smile className="h-8 w-8 text-primary" /> },
-            { title: "Clareamento", icon: <Sparkles className="h-8 w-8 text-primary" /> },
-            { title: "Cirurgia", icon: <UserCheck className="h-8 w-8 text-primary" /> },
-          ].map((service) => (
-            <Card key={service.title} className="p-6 border-none shadow-sm hover:shadow-elegant transition-all">
-              <CardContent className="flex flex-col items-center text-center">
-                <div className="mb-4 bg-secondary p-4 rounded-full">{service.icon}</div>
-                <h3 className="text-xl font-semibold">{service.title}</h3>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-24 bg-secondary/30">
-        <div className="container px-4 text-center">
-          <h2 className="text-4xl font-bold mb-16">O que dizem nossos pacientes</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Services Grid */}
+      <section className="py-32 bg-background">
+        <div className="container px-4">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+            <div className="max-w-xl">
+              <span className="text-primary font-bold tracking-widest uppercase text-sm">Nossas Especialidades</span>
+              <h2 className="text-4xl md:text-5xl font-bold mt-4">Soluções completas para sua saúde e estética bucal</h2>
+            </div>
+            <Button variant="link" className="text-primary text-lg p-0 h-auto font-bold flex items-center gap-2">
+              Ver todos os serviços <Sparkles size={20} />
+            </Button>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: "Raquel Albuquerque", text: "Excelente profissionais, me sinto muito bem acolhida e segura!" },
-              { name: "Graziela Teixeira", text: "Atendimento impecável! Dra. Bruna e Dr. Pedro são profissionais ímpares." },
-              { name: "Amândio Ferreira", text: "A equipe faz o possível para que o paciente se sinta à vontade." },
-            ].map((t, i) => (
-              <Card key={i} className="p-6">
-                <div className="flex text-accent mb-4">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="fill-current h-5 w-5" />)}
+              { title: "Implantes Dentários", desc: "Recupere sua confiança e função mastigatória com tecnologia de ponta.", icon: <Sparkles className="text-primary" /> },
+              { title: "Lentes de Contato", desc: "A estética dos famosos ao seu alcance com facetas de resina e cerâmica.", icon: <Smile className="text-primary" /> },
+              { title: "Ortodontia Moderna", desc: "Alinhamento preciso e discreto para todas as idades.", icon: <UserCheck className="text-primary" /> },
+              { title: "Harmonização", desc: "Realce sua beleza natural com procedimentos seguros e personalizados.", icon: <Sparkles className="text-primary" /> },
+              { title: "Canal e Periodontia", desc: "Tratamentos especializados para preservar sua saúde bucal.", icon: <Sparkles className="text-primary" /> },
+              { title: "Odontopediatria", desc: "Cuidado lúdico e preventivo para o sorriso dos pequenos.", icon: <Smile className="text-primary" /> },
+            ].map((service, index) => (
+              <Card key={index} className="group p-10 border-none bg-secondary/30 hover:bg-secondary/60 transition-all duration-500 rounded-3xl cursor-pointer">
+                <div className="mb-6 p-4 bg-white rounded-2xl w-fit shadow-sm group-hover:scale-110 transition-transform duration-500">
+                  {service.icon}
                 </div>
-                <p className="text-muted-foreground mb-4 italic">"{t.text}"</p>
-                <p className="font-semibold">{t.name}</p>
+                <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{service.desc}</p>
               </Card>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Footer Info */}
-      <footer className="py-16 bg-foreground text-background">
-        <div className="container px-4 grid md:grid-cols-3 gap-12">
-          <div>
-            <h4 className="text-xl font-bold mb-4 flex items-center"><MapPin className="mr-2" /> Localização</h4>
-            <p>Av. Duque de Caxias, 948 - Centro, Itapipoca - CE</p>
+      {/* Testimonials */}
+      <section className="py-32 bg-primary text-primary-foreground relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-accent/20 rounded-full blur-[120px] -mr-48 -mt-48" />
+        <div className="container px-4 relative z-10">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold">O que nossos pacientes sentem</h2>
           </div>
-          <div>
-            <h4 className="text-xl font-bold mb-4 flex items-center"><Phone className="mr-2" /> Contato</h4>
-            <p>(88) 99699-2574</p>
-          </div>
-          <div>
-            <h4 className="text-xl font-bold mb-4 flex items-center"><Clock className="mr-2" /> Horário</h4>
-            <p>Segunda-Sexta: 08:00–19:00</p>
-            <p>Sábado: 08:00–12:00</p>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { name: "Raquel Albuquerque", text: "Não tenho palavras pra expressar o quanto Amoooooo o trabalho desse casal, excelentes profissionais e sem falar a atenção que tem com cada paciente." },
+              { name: "Graziela Teixeira", text: "Atendimento impecável! A Dra. Bruna é muito atenciosa, cuidadosa e extremamente profissional, assim como o Dr. Pedro Victor." },
+              { name: "Maria Macedo", text: "Ambiente tranquilo, que nos deixa mais à vontade e seguros em certos procedimentos. Equipe excelente!" },
+            ].map((t, i) => (
+              <div key={i} className="p-10 bg-white/10 rounded-[2.5rem] backdrop-blur-xl border border-white/10 hover:bg-white/15 transition-colors">
+                <div className="flex text-accent mb-6 gap-1">
+                  {[...Array(5)].map((_, i) => <Star key={i} size={18} className="fill-current" />)}
+                </div>
+                <p className="text-xl mb-8 leading-relaxed font-medium">"{t.text}"</p>
+                <div className="flex items-center gap-4">
+                  <div className="h-12 w-12 rounded-full bg-white/20 flex items-center justify-center font-bold">
+                    {t.name[0]}
+                  </div>
+                  <p className="font-bold text-lg">{t.name}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </footer>
+      </section>
+
+      {/* Trust Banner */}
+      <section className="py-20 bg-secondary/20">
+        <div className="container px-4">
+          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-60 grayscale">
+            <span className="text-2xl font-bold">⭐ 5.0 Google Reviews</span>
+            <span className="text-2xl font-bold">Itapipoca - CE</span>
+            <span className="text-2xl font-bold">+101 Avaliações</span>
+            <span className="text-2xl font-bold">Atendimento Humanizado</span>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
