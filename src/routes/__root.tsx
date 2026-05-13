@@ -165,14 +165,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Odonto Melo | Clínica Odontológica Premium em Itapipoca" },
+      { name: "description", content: "A Clínica Odonto Melo oferece implantes, facetas, ortodontia e atendimento humanizado com Dr. Pedro e Dra. Bruna em Itapipoca - CE." },
+      { name: "author", content: "Odonto Melo" },
+      { property: "og:title", content: "Odonto Melo | Especialistas em Sorrisos" },
+      { property: "og:description", content: "Excelência em saúde bucal com atendimento premium em Itapipoca." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
