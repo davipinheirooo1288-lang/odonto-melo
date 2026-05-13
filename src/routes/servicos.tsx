@@ -1,6 +1,6 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Smile, ShieldCheck, HeartPulse, Stethoscope, Baby, ArrowRight, Check } from "lucide-react";
+import { Sparkles, ShieldCheck, HeartPulse, ArrowRight, Check } from "lucide-react";
 
 export const Route = createFileRoute("/servicos")({
   component: Servicos,
