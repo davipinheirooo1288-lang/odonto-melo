@@ -1,85 +1,119 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { User, Award, Heart, CheckCircle2 } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
+import { Award, Heart, ShieldCheck, ArrowRight, Check } from "lucide-react";
+import clinicHero from "@/assets/clinic-hero.jpg";
+import clinicRoom from "@/assets/clinic-room.jpg";
 
 export const Route = createFileRoute("/sobre")({
   component: Sobre,
+  head: () => ({
+    meta: [
+      { title: "Sobre | Odonto Melo - Itapipoca-CE" },
+      { name: "description", content: "Conheça a história da Clínica Odonto Melo, conduzida por Dr. Pedro Victor e Dra. Bruna em Itapipoca-CE." },
+    ],
+  }),
 });
+
+const WHATSAPP_URL = "https://wa.me/5588996992574";
 
 function Sobre() {
   return (
-    <div className="py-24 md:py-32">
-      <div className="container px-4">
-        {/* Story Section */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center mb-32">
-          <div className="relative">
-            <div className="bg-secondary rounded-[3rem] aspect-[4/5] flex items-center justify-center overflow-hidden">
-               <User size={200} className="text-primary/10" />
-            </div>
-            <div className="absolute -bottom-8 -right-8 bg-primary text-primary-foreground p-10 rounded-[2.5rem] shadow-elegant hidden md:block max-w-[280px]">
-              <p className="text-2xl font-bold mb-2">Dr. Pedro & Dra. Bruna</p>
-              <p className="opacity-80">Especialistas dedicados ao seu sorriso.</p>
-            </div>
-          </div>
-          
+    <div>
+      {/* Hero */}
+      <section className="bg-secondary/40 py-20 lg:py-28 border-b">
+        <div className="container px-6 grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <span className="text-primary font-bold tracking-widest uppercase text-sm">Nossa História</span>
-            <h1 className="text-4xl md:text-6xl font-bold mt-4 mb-8">Excelência que vem da paixão pela Odontologia</h1>
-            <p className="text-xl text-muted-foreground leading-relaxed mb-8">
-              A Odonto Melo nasceu do desejo de Dr. Pedro e Dra. Bruna em oferecer um atendimento diferenciado em Itapipoca. Um lugar onde o paciente não é apenas um número, mas um convidado especial.
+            <span className="text-xs uppercase tracking-[0.25em] text-accent-foreground/70 font-semibold">Nossa História</span>
+            <h1 className="font-serif text-4xl md:text-6xl text-primary mt-4 mb-6 leading-[1.05]">
+              Excelência que nasce da <span className="italic-serif">paixão.</span>
+            </h1>
+            <p className="text-lg text-foreground/70 leading-relaxed">
+              A Odonto Melo foi criada por Dr. Pedro Victor e Dra. Bruna com o desejo de oferecer em Itapipoca um atendimento odontológico de outro nível — onde tecnologia, sofisticação e acolhimento andam juntos.
             </p>
-            <div className="space-y-4">
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <img src={clinicHero} alt="Recepção da clínica" className="rounded-3xl aspect-[3/4] object-cover" loading="lazy" width={1024} height={1280} />
+            <img src={clinicRoom} alt="Sala de atendimento" className="rounded-3xl aspect-[3/4] object-cover mt-12" loading="lazy" width={1024} height={1280} />
+          </div>
+        </div>
+      </section>
+
+      {/* Story */}
+      <section className="py-20 lg:py-28">
+        <div className="container px-6 grid lg:grid-cols-12 gap-12">
+          <div className="lg:col-span-4">
+            <span className="text-xs uppercase tracking-[0.25em] text-accent-foreground/70 font-semibold">Quem conduz</span>
+            <h2 className="font-serif text-3xl md:text-4xl text-primary mt-3 leading-tight">
+              Dr. Pedro Victor <br />& <span className="italic-serif">Dra. Bruna</span>
+            </h2>
+          </div>
+          <div className="lg:col-span-8 space-y-5 text-foreground/70 leading-relaxed text-lg">
+            <p>
+              Um casal de cirurgiões-dentistas apaixonados pela profissão, comprometidos em entregar resultados que combinam ciência, arte e cuidado humano em cada atendimento.
+            </p>
+            <p>
+              Reconhecidos pela atenção aos detalhes, pelo carinho com cada paciente e pela busca constante por aperfeiçoamento, formaram uma equipe que trata cada sorriso como único.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4 pt-6">
               {[
                 "Ambiente planejado para o seu conforto",
                 "Equipe técnica altamente qualificada",
-                "Tecnologia de última geração em todos os processos",
-                "Foco em resultados naturais e duradouros"
+                "Tecnologia de última geração",
+                "Resultados naturais e duradouros",
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 text-lg font-medium">
-                  <CheckCircle2 className="text-primary" />
-                  <span>{item}</span>
+                <div key={i} className="flex items-start gap-3 text-base text-foreground/80">
+                  <Check className="text-accent mt-1 shrink-0" size={18} strokeWidth={2.5} />
+                  {item}
                 </div>
               ))}
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Values */}
-        <div className="grid md:grid-cols-3 gap-8">
-          {[
-            { icon: <Award />, title: "Inovação", desc: "Constantemente atualizados com o que há de mais moderno na odontologia mundial." },
-            { icon: <Heart />, title: "Humanização", desc: "Entendemos seus medos e expectativas para um atendimento sem dor e acolhedor." },
-            { icon: <ShieldCheck />, title: "Segurança", desc: "Protocolos rigorosos de biossegurança e esterilização para sua total tranquilidade." }
-          ].map((v, i) => (
-            <div key={i} className="p-12 bg-secondary/30 rounded-[2.5rem] hover:bg-secondary/50 transition-colors">
-              <div className="mb-6 p-4 bg-white rounded-2xl w-fit shadow-sm text-primary">
-                {v.icon}
+      {/* Values */}
+      <section className="bg-secondary/40 py-20 lg:py-28">
+        <div className="container px-6">
+          <div className="text-center max-w-xl mx-auto mb-16">
+            <span className="text-xs uppercase tracking-[0.25em] text-accent-foreground/70 font-semibold">Nossos Valores</span>
+            <h2 className="font-serif text-4xl md:text-5xl text-primary mt-4 leading-tight">
+              O que nos move <span className="italic-serif">todos os dias.</span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { icon: Award, title: "Inovação", desc: "Atualizados com o que há de mais moderno na odontologia mundial." },
+              { icon: Heart, title: "Humanização", desc: "Entendemos seus medos para um atendimento sem dor e acolhedor." },
+              { icon: ShieldCheck, title: "Segurança", desc: "Protocolos rigorosos de biossegurança e esterilização." },
+            ].map((v, i) => (
+              <div key={i} className="bg-card border rounded-3xl p-10">
+                <v.icon className="text-accent mb-6" size={32} strokeWidth={1.5} />
+                <h3 className="font-serif text-2xl text-primary mb-3">{v.title}</h3>
+                <p className="text-foreground/60 leading-relaxed">{v.desc}</p>
               </div>
-              <h3 className="text-2xl font-bold mb-4">{v.title}</h3>
-              <p className="text-muted-foreground text-lg leading-relaxed">{v.desc}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </div>
-  );
-}
+      </section>
 
-function ShieldCheck(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
-      <path d="m9 12 2 2 4-4" />
-    </svg>
+      {/* CTA */}
+      <section className="bg-primary text-primary-foreground py-20">
+        <div className="container px-6 text-center max-w-2xl">
+          <h2 className="font-serif text-4xl md:text-5xl mb-6 leading-tight">
+            Venha nos <span className="italic-serif">conhecer.</span>
+          </h2>
+          <p className="text-primary-foreground/70 mb-10">
+            Será um prazer recebê-lo na nossa clínica em Itapipoca.
+          </p>
+          <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+            <Button size="lg" className="rounded-full px-8 h-14 bg-accent text-accent-foreground hover:bg-accent/90 gap-2 group">
+              Agendar Visita
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </a>
+        </div>
+      </section>
+    </div>
   );
 }
