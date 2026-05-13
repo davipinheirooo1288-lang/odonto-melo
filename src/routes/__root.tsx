@@ -7,8 +7,101 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { MessageSquare, Phone, Instagram, Facebook, Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 import appCss from "../styles.css?url";
+
+function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const NavLinks = () => (
+    <>
+      <Link to="/" className="hover:text-primary transition-colors font-medium" activeProps={{ className: "text-primary" }}>Início</Link>
+      <Link to="/servicos" className="hover:text-primary transition-colors font-medium" activeProps={{ className: "text-primary" }}>Serviços</Link>
+      <Link to="/sobre" className="hover:text-primary transition-colors font-medium" activeProps={{ className: "text-primary" }}>Sobre</Link>
+      <Link to="/contato" className="hover:text-primary transition-colors font-medium" activeProps={{ className: "text-primary" }}>Contato</Link>
+    </>
+  );
+
+  return (
+    <nav className="sticky top-0 z-50 w-full glass border-b">
+      <div className="container px-4 h-20 flex items-center justify-between">
+        <Link to="/" className="text-2xl font-bold text-primary flex items-center gap-2">
+          Odonto Melo
+        </Link>
+
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-8">
+          <NavLinks />
+          <Button className="bg-primary hover:bg-primary/90 text-white rounded-full px-6">
+            Agendar Agora
+          </Button>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button className="md:hidden text-primary" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </div>
+
+      {/* Mobile Nav */}
+      {isOpen && (
+        <div className="md:hidden bg-background border-b animate-in fade-in slide-in-from-top-4 duration-300">
+          <div className="flex flex-col gap-4 p-6 text-center">
+            <NavLinks />
+            <Button className="bg-primary hover:bg-primary/90 text-white rounded-full w-full">
+              Agendar Agora
+            </Button>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="bg-foreground text-background py-16">
+      <div className="container px-4 grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div className="md:col-span-2">
+          <h3 className="text-2xl font-bold text-primary mb-4">Odonto Melo</h3>
+          <p className="text-muted-foreground max-w-sm mb-6">
+            Transformando sorrisos e vidas com excelência e cuidado em Itapipoca-CE.
+          </p>
+          <div className="flex gap-4">
+            <a href="https://instagram.com/clinicaodontomelo" className="p-2 bg-primary/20 rounded-full hover:bg-primary/30 transition-colors">
+              <Instagram size={20} className="text-primary" />
+            </a>
+            <a href="https://facebook.com/clinicaodontomelo1" className="p-2 bg-primary/20 rounded-full hover:bg-primary/30 transition-colors">
+              <Facebook size={20} className="text-primary" />
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 className="font-bold mb-4">Acesso Rápido</h4>
+          <ul className="space-y-2 text-muted-foreground">
+            <li><Link to="/servicos">Serviços</Link></li>
+            <li><Link to="/sobre">Sobre Nós</Link></li>
+            <li><Link to="/contato">Contato</Link></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 className="font-bold mb-4">Atendimento</h4>
+          <p className="text-muted-foreground">(88) 99699-2574</p>
+          <p className="text-muted-foreground mt-2">Av. Duque de Caxias, 948<br />Itapipoca - CE</p>
+        </div>
+      </div>
+      <div className="container px-4 mt-16 pt-8 border-t border-white/10 text-center text-sm text-muted-foreground">
+        &copy; {new Date().getFullYear()} Odonto Melo. Todos os direitos reservados.
+      </div>
+    </footer>
+  );
+}
+
 
 function NotFoundComponent() {
   return (
@@ -113,7 +206,11 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <Navbar />
+      <main className="min-h-[70vh]">
+        <Outlet />
+      </main>
+      <Footer />
     </QueryClientProvider>
   );
 }
